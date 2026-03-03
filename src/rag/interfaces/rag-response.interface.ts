@@ -14,8 +14,9 @@ export interface ProposedOrientation {
   justification: string;
 }
 
-/** GPT analysis output (from prompt) */
-export interface GptAnalysis {
+/** Full structured analysis — returned on Turn 1 */
+export interface FullAnalysis {
+  type: 'full';
   case_analysis: string;
   regulatory_framework: string;
   regulatory_points: RegulatoryPoint[];
@@ -25,6 +26,19 @@ export interface GptAnalysis {
   important_notes: string[];
   disclaimer: string;
 }
+
+/** Conversational follow-up — returned on Turn 2+ */
+export interface FollowUpAnalysis {
+  type: 'follow_up';
+  response: string;
+  regulatory_references: string[];
+  updated_orientation: ProposedOrientation | null;
+  action_items: string[];
+  important_notes: string[];
+  disclaimer: string;
+}
+
+export type GptAnalysis = FullAnalysis | FollowUpAnalysis;
 
 /** Engine deterministic decision */
 export interface EngineDecision {

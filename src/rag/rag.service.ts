@@ -139,33 +139,33 @@ ${factList}`,
     }
   }
 
-  // ─── GPT CALL (with conversation history) ────────────────────────
+  // ─── GPT CALL ────────────────────────────────────────────────────
 
-  private async callGptWithHistory(
-    systemPrompt: string,
+  private async callGpt(
+    isFollowUp: boolean,
     regulationContext: string,
     history: ConversationMessage[],
     currentQuestion: string,
     engineContext?: EngineContext,
   ): Promise<GptAnalysis> {
+    const systemPrompt = this.promptBuilderService.buildSystemPrompt(isFollowUp);
     const messages: OpenAI.ChatCompletionMessageParam[] = [
       { role: 'system', content: systemPrompt },
     ];
 
-    // Inject regulation context as the first user/assistant exchange
-    if (history.length === 0) {
-      // First turn: regulation context + question together
+    if (!isFollowUp) {
       const userPrompt = this.promptBuilderService.buildUserPrompt(
-        currentQuestion,
-        [],
-        engineContext,
+        currentQuestion, [], engineContext,
       );
-      const fullPrompt = regulationContext
-        ? `${regulationContext}\n\n${userPrompt}`
-        : userPrompt;
-      messages.push({ role: 'user', content: fullPrompt });
+      messages.push({
+        role: 'user',
+        content: regulationContext
+          ? `${regulationContext}\n\n${userPrompt}`
+          : userPrompt,
+      });
     } else {
-      // Follow-up: inject regulation as context, then replay history
+      // Replay full conversation for GPT to have context
+      // First message: initial case + regulation
       messages.push({
         role: 'user',
         content: regulationContext
@@ -173,16 +173,15 @@ ${factList}`,
           : history[0].content,
       });
 
-      // Replay previous exchanges (skip first user message, already injected)
+      // Replay all subsequent exchanges
       for (let i = 1; i < history.length; i++) {
-        const msg = history[i];
         messages.push({
-          role: msg.role === 'user' ? 'user' : 'assistant',
-          content: msg.content,
+          role: history[i].role === 'user' ? 'user' : 'assistant',
+          content: history[i].content,
         });
       }
 
-      // Current follow-up question
+      // New follow-up question
       messages.push({ role: 'user', content: currentQuestion });
     }
 
@@ -190,7 +189,7 @@ ${factList}`,
       const completion = await this.openai.chat.completions.create({
         model: this.chatModel,
         messages,
-        temperature: 0.15,
+        temperature: isFollowUp ? 0.25 : 0.15,
         max_tokens: 4096,
         response_format: { type: 'json_object' },
       });
@@ -204,7 +203,7 @@ ${factList}`,
     } catch (error) {
       if (error instanceof HttpException) throw error;
       this.logger.error('OpenAI chat completion failed', error);
-      throw new HttpException('Failed to generate answer from OpenAI', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException('Failed to generate answer', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -220,56 +219,53 @@ ${factList}`,
       `[Turn ${(existingConversation?.turn ?? 0) + 1}] "${question.substring(0, 80)}..."`,
     );
 
-    // Build cumulative clinical context (all user messages concatenated)
     const previousContext = existingConversation?.cumulative_context ?? '';
     const cumulativeContext = previousContext
       ? `${previousContext}\n\nSuite — message du médecin :\n${question}`
       : question;
 
-    // 1. Vector search on the current question (each turn may reference different regulation areas)
-    const embedding = await this.embeddingService.generateEmbedding(
-      isFollowUp ? cumulativeContext.slice(-2000) : question,
-    );
+    // 1. Vector search (use full context for follow-ups to catch new topics)
+    const searchText = isFollowUp ? cumulativeContext.slice(-2000) : question;
+    const embedding = await this.embeddingService.generateEmbedding(searchText);
     const chunks = await this.vectorSearchService.searchRegulations(embedding, 8);
     this.logger.debug(`Retrieved ${chunks.length} regulation chunks`);
 
-    // 2. Build regulation context string
+    // 2. Build regulation context
     const regulationContext = chunks.length > 0
       ? `Contexte réglementaire extrait de l'Arrêté du 28 mars 2022 :\n===\n${chunks
           .map((c, i) => `[Source ${i + 1}] (similarité: ${(c.similarity * 100).toFixed(1)}%)\n${c.content}`)
           .join('\n\n---\n\n')}\n===`
       : '';
 
-    // 3. Extract facts from the FULL cumulative context (catches new info from follow-ups)
-    const factsPromise = this.extractFactsFromText(cumulativeContext);
-
-    // 4. GPT call with conversation history
+    // 3. Facts + GPT in parallel
     const history = existingConversation?.history ?? [];
-    const systemPrompt = this.promptBuilderService.buildSystemPrompt();
 
     const [gptResult, extractedFacts] = await Promise.all([
-      this.callGptWithHistory(systemPrompt, regulationContext, history, question, engineContext),
-      factsPromise,
+      this.callGpt(isFollowUp, regulationContext, history, question, engineContext),
+      this.extractFactsFromText(cumulativeContext),
     ]);
 
-    // 5. Merge facts: keep previous facts, override with new extractions where non-null
+    // 4. Merge facts
     const previousFacts = existingConversation?.cumulative_facts ?? {};
     const mergedFacts: FactStore = { ...previousFacts };
     for (const [key, val] of Object.entries(extractedFacts)) {
       if (val !== null) mergedFacts[key] = val;
     }
 
-    // 6. Run engine with merged facts
+    // 5. Run engine
     const engineBlock = this.runEngine(mergedFacts);
 
-    // 7. Build updated conversation state
-    const now = new Date().toISOString();
-    const assistantSummary = gptResult.case_analysis || gptResult.medical_reasoning || '';
+    // 6. Build assistant content for history
+    // For full analysis, store the case_analysis. For follow-up, store the response.
+    const assistantContent = gptResult.type === 'follow_up'
+      ? gptResult.response
+      : gptResult.case_analysis;
 
+    const now = new Date().toISOString();
     const updatedHistory: ConversationMessage[] = [
       ...history,
       { role: 'user', content: question, timestamp: now },
-      { role: 'assistant', content: assistantSummary, timestamp: now },
+      { role: 'assistant', content: assistantContent, timestamp: now },
     ];
 
     const conversation: ConversationState = {
