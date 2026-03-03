@@ -56,23 +56,34 @@ export interface SourceReference {
   similarity: number;
 }
 
+export interface EngineBlock {
+  decision: EngineDecision;
+  fired_rules: EngineRuleFired[];
+  required_actions: { type: string; value: string }[];
+  accommodations: Accommodation[];
+  expert_notes: string[];
+  ui_messages: string[];
+  facts_extracted: Record<string, boolean | null>;
+}
+
 export interface RagResponse {
   /** GPT expert analysis */
   analysis: GptAnalysis;
 
   /** Deterministic engine decision (from rules) */
-  engine: {
-    decision: EngineDecision;
-    fired_rules: EngineRuleFired[];
-    required_actions: { type: string; value: string }[];
-    accommodations: Accommodation[];
-    expert_notes: string[];
-    ui_messages: string[];
-    facts_extracted: Record<string, boolean | null>;
-  } | null;
+  engine: EngineBlock | null;
 
   /** Regulatory text sources used */
   sources: SourceReference[];
+
+  /** Conversation state — send back on follow-up calls */
+  conversation: {
+    id: string;
+    history: { role: 'user' | 'assistant'; content: string; timestamp: string }[];
+    turn: number;
+    cumulative_context: string;
+    cumulative_facts: Record<string, boolean | null> | null;
+  };
 
   metadata: {
     chunks_used: number;

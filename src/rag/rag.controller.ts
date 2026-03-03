@@ -9,6 +9,6 @@ export class RagController {
 
   @Post('ask')
   async ask(@Body() dto: AskQuestionDto): Promise<RagResponse> {
-    return this.ragService.ask(dto.question);
+    return this.ragService.ask(dto.question, dto.conversation);
   }
 }
