@@ -1,6 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { RegulationChunk } from './interfaces/rag-response.interface';
 
+export interface EngineContext {
+  facts: Record<string, boolean | null>;
+  firedRules: { ruleId: string; confidence: number; decisionLabel: string; rationale: string }[];
+  suggestedDecision: string | null;
+}
+
 @Injectable()
 export class PromptBuilderService {
   private readonly systemPrompt = `Tu es un assistant médical expert du permis de conduire, destiné exclusivement aux médecins agréés.
@@ -80,7 +86,11 @@ Tu dois répondre EXACTEMENT au format JSON suivant, sans texte avant ou après 
     return this.systemPrompt;
   }
 
-  buildUserPrompt(question: string, chunks: RegulationChunk[]): string {
+  buildUserPrompt(
+    question: string,
+    chunks: RegulationChunk[],
+    engineContext?: EngineContext,
+  ): string {
     const context = chunks
       .map(
         (chunk, index) =>
@@ -88,11 +98,38 @@ Tu dois répondre EXACTEMENT au format JSON suivant, sans texte avant ou après 
       )
       .join('\n\n---\n\n');
 
+    let engineSection = '';
+    if (engineContext) {
+      const factsStr = Object.entries(engineContext.facts)
+        .filter(([, v]) => v !== null)
+        .map(([k, v]) => `  - ${k}: ${v}`)
+        .join('\n');
+
+      const rulesStr = engineContext.firedRules
+        .map((r) => `  - ${r.ruleId} (confiance: ${(r.confidence * 100).toFixed(0)}%) → ${r.decisionLabel}: ${r.rationale}`)
+        .join('\n');
+
+      engineSection = `
+CONTEXTE D'ÉVALUATION GUIDÉE (déjà collecté par le questionnaire) :
+---
+Faits cliniques établis :
+${factsStr || '  (aucun)'}
+
+Règles déjà évaluées :
+${rulesStr || '  (aucune)'}
+
+Suggestion du moteur de décision : ${engineContext.suggestedDecision || 'aucune'}
+---
+Le médecin demande une analyse complémentaire au-delà de ce que le questionnaire a pu évaluer.
+
+`;
+    }
+
     return `Contexte réglementaire extrait de l'Arrêté du 28 mars 2022 :
 ===
 ${context}
 ===
-
+${engineSection}
 Cas clinique / Question du médecin :
 ${question}
 

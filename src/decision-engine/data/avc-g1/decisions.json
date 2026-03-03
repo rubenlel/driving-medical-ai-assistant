@@ -1,0 +1,50 @@
+[
+  {
+    "code": "FIN_A",
+    "label": "INAPTE TEMPORAIRE",
+    "type": "STOP",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "uiTemplate": "Décision: INAPTE TEMPORAIRE • Durée: {DUREE_INAPTE_TEMP}",
+    "medicoLegalText": "Reprise possible après stabilisation clinique + avis spécialisé + examens à jour et délai réglementaire atteint. Rappel : la signature du médecin agréé engage sa responsabilité. Une inaptitude peut être levée après correction/stabilisation et nouvelle visite."
+  },
+  {
+    "code": "FIN_B",
+    "label": "APTE AVEC RESTRICTIONS",
+    "type": "END",
+    "defaultDuration": "DUREE_APTE_TEMP/DR",
+    "uiTemplate": "Décision: APTE AVEC RESTRICTIONS • Codes: {CODES} • Durée: {DUREE}",
+    "medicoLegalText": "Aptitude sous réserve des restrictions/aménagements indiqués et du suivi prescrit. Restrictions/aménagements : sélectionner les codes adaptés selon déficits."
+  },
+  {
+    "code": "FIN_C",
+    "label": "INAPTE + ÉVAL COG",
+    "type": "STOP",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "uiTemplate": "Décision: INAPTE TEMPORAIRE • Évaluation: neuropsych/psychotech/test conduite",
+    "medicoLegalText": "Décision conditionnée à une évaluation neurocognitive et/ou test de conduite avec amélioration documentée. Rappel : la signature du médecin agréé engage sa responsabilité. Une inaptitude peut être levée après amélioration documentée et nouvelle évaluation."
+  },
+  {
+    "code": "FIN_D",
+    "label": "APTE TEMPORAIRE SOUS CONDITIONS",
+    "type": "END",
+    "defaultDuration": "DUREE_APTE_TEMP",
+    "uiTemplate": "Décision: APTE TEMPORAIRE • Durée: {DUREE_APTE_TEMP} • Conditions: {CONDITIONS}",
+    "medicoLegalText": "Aptitude temporaire accordée sous conditions (stabilité, absence récidive, traitement toléré, suivi spécialisé). Prudence : risque de récidive surtout la première année → recontrôle conseillé (souvent 6 mois puis 1 an selon contexte)."
+  },
+  {
+    "code": "FIN_E",
+    "label": "APTE TEMPORAIRE (en attente avis)",
+    "type": "END",
+    "defaultDuration": "6 mois",
+    "uiTemplate": "Décision: APTE TEMPORAIRE (prudence) • Durée: 6 mois • Condition: avis neuro favorable",
+    "medicoLegalText": "Aptitude temporaire courte dans l’attente d’un avis spécialisé récent compatible avec la conduite. Prudence : éviter décision trop précoce ; recontrôle avec avis spécialisé et éléments objectifs."
+  },
+  {
+    "code": "FIN_F",
+    "label": "BASCULER GROUPE 2",
+    "type": "ROUTE",
+    "defaultDuration": "",
+    "uiTemplate": "Évaluation Groupe 2 nécessaire",
+    "medicoLegalText": "Le cas relève d’une évaluation Groupe 2 (professionnelle) : appliquer le protocole dédié."
+  }
+]

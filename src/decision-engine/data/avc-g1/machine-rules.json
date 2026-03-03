@@ -1,0 +1,314 @@
+[
+  {
+    "ruleId": "MR1",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "actions": [
+      {
+        "type": "set_recheck",
+        "value": "6_months_post_event"
+      },
+      {
+        "type": "show_snippet",
+        "key": "STABILISATION"
+      },
+      {
+        "type": "show_snippet",
+        "key": "RESP_MA"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR2",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "neurologue"
+      },
+      {
+        "type": "show_snippet",
+        "key": "STABILISATION"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR3",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "actions": [
+      {
+        "type": "recommend",
+        "value": "attendre_consolidation"
+      },
+      {
+        "type": "require_specialist",
+        "value": "neurologue/medecin_MPR"
+      },
+      {
+        "type": "show_snippet",
+        "key": "STABILISATION"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR4",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE (temporaire ou avis spécialisé + aménagements)",
+    "actions": [
+      {
+        "type": "consider_accommodations",
+        "value": true
+      },
+      {
+        "type": "require_specialist",
+        "value": "MPR/ergo"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR5",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE (tant que présent)",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "ophtalmologue"
+      },
+      {
+        "type": "recommend",
+        "value": "compensation_documentee"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR6",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "ophtalmologue"
+      },
+      {
+        "type": "recommend",
+        "value": "stabilisation_correction"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR7",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE (prudence, attente avis)",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "ophtalmologue"
+      },
+      {
+        "type": "show_snippet",
+        "key": "RESP_MA"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR8",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE + ÉVAL COG",
+    "actions": [
+      {
+        "type": "require_evaluation",
+        "value": "bilan_neuropsychologique"
+      },
+      {
+        "type": "maybe",
+        "value": "test_psychotechnique"
+      },
+      {
+        "type": "maybe",
+        "value": "test_conduite"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR9",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE/DEFINITIVE (selon sévérité)",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "neurologue"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR10",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "INAPTE TEMPORAIRE (module épilepsie)",
+    "actions": [
+      {
+        "type": "route_to_module",
+        "value": "EPILEPSIE"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR11",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE SOUS CONDITIONS",
+    "actions": [
+      {
+        "type": "recommend",
+        "value": "adapter_traitement"
+      },
+      {
+        "type": "require_followup",
+        "value": "tolérance_traitement"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR12",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE courte (attente avis)",
+    "actions": [
+      {
+        "type": "require_specialist",
+        "value": "neurologue"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR13",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE courte (bilan en cours)",
+    "actions": [
+      {
+        "type": "recommend",
+        "value": "finaliser_bilan_etiologique"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR14",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "RENVOI COMMISSION (case 6)",
+    "actions": [
+      {
+        "type": "recommend",
+        "value": "case6_commission"
+      },
+      {
+        "type": "show_snippet",
+        "key": "CASE6"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR15",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE (FOP)",
+    "actions": [
+      {
+        "type": "ask",
+        "value": "intervention_FOP_prevue?"
+      },
+      {
+        "type": "recommend",
+        "value": "recontrole_6m_et_12m"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  },
+  {
+    "ruleId": "MR99",
+    "andConditions": [],
+    "orConditions": [],
+    "notConditions": [],
+    "decisionLabel": "APTE TEMPORAIRE (standard)",
+    "actions": [
+      {
+        "type": "show_snippet",
+        "key": "PAS_DEFINITIF"
+      }
+    ],
+    "missingData": [],
+    "snippetKeys": [],
+    "confidence": 0.5
+  }
+]

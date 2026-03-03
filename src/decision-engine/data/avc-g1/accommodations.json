@@ -1,0 +1,50 @@
+[
+  {
+    "symptom": "Trouble visuel nécessitant correction",
+    "codes": "01.01 / 01.02 / 01.06",
+    "label": "Lunettes / Lentilles / Lunettes ou lentilles",
+    "comment": "À sélectionner selon l’équipement réel."
+  },
+  {
+    "symptom": "Diplopie nécessitant occlusion",
+    "codes": "01.05",
+    "label": "Couvre-œil",
+    "comment": "Si correction/occlusion prescrite et tolérée + avis oph."
+  },
+  {
+    "symptom": "Faiblesse / limitation membre supérieur",
+    "codes": "03.01",
+    "label": "Prothèse/orthèse membre(s) supérieur(s)",
+    "comment": "Si appareillage/orthèse utilisée."
+  },
+  {
+    "symptom": "Déficit membre supérieur impactant commande",
+    "codes": "78 / 10.02",
+    "label": "Véhicule à vitesse automatique / Choix transmission automatique",
+    "comment": "Exemple: faiblesse main droite → boîte automatique recommandée."
+  },
+  {
+    "symptom": "Besoin d’assistance au volant",
+    "codes": "40.11",
+    "label": "Dispositif d'assistance sur le volant",
+    "comment": "Ex: boule au volant, système d’aide."
+  },
+  {
+    "symptom": "Commandes sans lâcher le volant",
+    "codes": "35.02",
+    "label": "Dispositifs actionnables sans lâcher la direction",
+    "comment": "Ex: regroupement commandes, adaptation commodos."
+  },
+  {
+    "symptom": "Champ visuel limité / angle mort",
+    "codes": "42.05",
+    "label": "Dispositif de vision d'angle mort",
+    "comment": "Si compatible avec l’état visuel et validé."
+  },
+  {
+    "symptom": "Instabilité posturale",
+    "codes": "43.03 / 43.04",
+    "label": "Siège soutien latéral / accoudoir",
+    "comment": "Pour stabilité du tronc si séquelles motrices."
+  }
+]

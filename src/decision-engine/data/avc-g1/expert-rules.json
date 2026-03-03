@@ -1,0 +1,112 @@
+[
+  {
+    "ruleId": "W1",
+    "theme": "Principe",
+    "trigger": "AVC/AIT : état non stabilisé",
+    "context": "G1/G2",
+    "recommendation": "FIN_A",
+    "suggestedDuration": "DUREE_INAPTE_TEMP",
+    "clinicalJustification": "Ne pas (re)conduire tant que l'état n'est pas stabilisé ; stabilité clinique > délai fixe.",
+    "regulatoryReference": "Arrêté 28/03/2022 art 4.4.3 / 4.4.3.2",
+    "uiNote": "Afficher: 'Pas de délai chiffré officiel ; stabilisation requise'"
+  },
+  {
+    "ruleId": "W2",
+    "theme": "Phase aiguë",
+    "trigger": "< 6 mois OU bilan étiologique incomplet / traitement non stabilisé",
+    "context": "G1",
+    "recommendation": "FIN_A",
+    "suggestedDuration": "DUREE_INAPTE_TEMP",
+    "clinicalJustification": "Phase post-aiguë : risque + incertitude ; réévaluer avec éléments objectifs.",
+    "regulatoryReference": "Pratique experte + Arrêté 28/03/2022",
+    "uiNote": "Suggérer recontrôle 4-6 semaines minimum ; éviter 'J6'"
+  },
+  {
+    "ruleId": "W3",
+    "theme": "Phase stabilisée",
+    "trigger": "Stabilité clinique + pas de récidive + examen neuro normal + avis neuro de contrôle",
+    "context": "G1",
+    "recommendation": "FIN_D",
+    "suggestedDuration": "DUREE_APTE_TEMP",
+    "clinicalJustification": "Aptitude temporaire prudente ; risque de récidive majoritairement 1ère année.",
+    "regulatoryReference": "Arrêté 28/03/2022 + pratique experte",
+    "uiNote": "Durée fréquente: 6 mois, renouvelable 1 fois (→ 1 an)."
+  },
+  {
+    "ruleId": "W4",
+    "theme": "Sortie de surveillance",
+    "trigger": "Surveillance terminée + plus de critère justifiant un suivi spécifique",
+    "context": "G1",
+    "recommendation": "FIN_D",
+    "suggestedDuration": "Durée réglementaire",
+    "clinicalJustification": "Retour au droit commun (durée administrative).",
+    "regulatoryReference": "Rappel permis 2018",
+    "uiNote": "Éviter 'définitif' ; utiliser 'durée réglementaire'."
+  },
+  {
+    "ruleId": "W5",
+    "theme": "Responsabilité",
+    "trigger": "Courrier spécialiste favorable",
+    "context": "Tous",
+    "recommendation": "INFO",
+    "suggestedDuration": "-",
+    "clinicalJustification": "L'avis spécialiste aide mais n'exonère pas ; décision du MA.",
+    "regulatoryReference": "-",
+    "uiNote": "Toujours afficher: 'Signature MA engage responsabilité'."
+  },
+  {
+    "ruleId": "W6",
+    "theme": "Case 6 CERFA",
+    "trigger": "Cas complexe / incertitude / discordance",
+    "context": "Tous",
+    "recommendation": "OPTION_CASE6",
+    "suggestedDuration": "-",
+    "clinicalJustification": "Option de sécurité: évaluation collégiale en commission.",
+    "regulatoryReference": "CERFA (procédure)",
+    "uiNote": "Présenter comme choix médical légitime, pas fuite."
+  },
+  {
+    "ruleId": "W7",
+    "theme": "FOP sujet jeune",
+    "trigger": "AVC sur FOP + récupération totale",
+    "context": "G1",
+    "recommendation": "FIN_D",
+    "suggestedDuration": "6 mois",
+    "clinicalJustification": "Récidive surtout 1ère année ; discussion intervention FOP.",
+    "regulatoryReference": "-",
+    "uiNote": "UI: 'Intervention FOP prévue ?' → prudence avant geste."
+  },
+  {
+    "ruleId": "W8",
+    "theme": "Atteinte visuelle récupérée",
+    "trigger": "Déficit visuel initial récupéré (avis oph + neuro favorables)",
+    "context": "G1",
+    "recommendation": "FIN_D",
+    "suggestedDuration": "6 mois",
+    "clinicalJustification": "Compatible mais pas immédiat ; doc objective requise.",
+    "regulatoryReference": "-",
+    "uiNote": "Exiger bilan ophtalmo récent favorable."
+  },
+  {
+    "ruleId": "W9",
+    "theme": "Séquelle persistante",
+    "trigger": "Hémiparésie même minime / rééducation en cours",
+    "context": "G1",
+    "recommendation": "FIN_A",
+    "suggestedDuration": "DUREE_INAPTE_TEMP",
+    "clinicalJustification": "Non consolidé ; prudence.",
+    "regulatoryReference": "-",
+    "uiNote": "Orienter vers équipe pluridisciplinaire / ergo / test conduite si besoin."
+  },
+  {
+    "ruleId": "W10",
+    "theme": "Inaptitude non définitive",
+    "trigger": "Cause corrigible (ex. cataracte)",
+    "context": "Tous",
+    "recommendation": "INFO",
+    "suggestedDuration": "-",
+    "clinicalJustification": "Inaptitude levable si cause corrigée + nouvelle visite.",
+    "regulatoryReference": "-",
+    "uiNote": "UI: rassurer patient ; expliquer réévaluation possible."
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "DELAI_MIN_POST_AVC_MOIS": {
+    "value": 6,
+    "type": "number",
+    "notes": "Délai minimal avant réévaluation/possible reprise (par défaut 6 mois dans ton arbre)."
+  },
+  "DUREE_APTE_TEMP": {
+    "value": "6 mois",
+    "type": "dropdown",
+    "notes": "6 mois;1 an;2 ans;5 ans"
+  },
+  "DUREE_INAPTE_TEMP": {
+    "value": "6 mois",
+    "type": "dropdown",
+    "notes": "1 mois;6 semaines;3 mois;6 mois;1 an"
+  },
+  "GROUPE_PERMIS": {
+    "value": "G1",
+    "type": "dropdown",
+    "notes": "G1;G2"
+  },
+  "RECO_MIN_REEVAL_WEEKS": {
+    "value": "4-6",
+    "type": "Recommandation experte (WhatsApp) : éviter décision immédiate ; revoir à 4-6 semaines si doute/phase post-aiguë.",
+    "notes": null
+  },
+  "PRINCIPE_STABILISATION": {
+    "value": "Etat stabilisé requis",
+    "type": "Principe clé : pas de délai chiffré officiel ; c'est la stabilisation clinique qui fait foi (Arrêté 28/03/2022, art 4.4.3/4.4.3.2).",
+    "notes": null
+  },
+  "NOTE_RESPONSABILITE_MA": {
+    "value": "Signature engage le MA",
+    "type": "Rappel médico-légal : seul le médecin agréé signataire du CERFA est responsable ; l'avis spécialiste ne décharge pas.",
+    "notes": null
+  },
+  "NOTE_PAS_DEFINITIF": {
+    "value": "Pas de 'définitif'",
+    "type": "Depuis 2018 : permis limité (ex. 15 ans en G1) ; on parle d'aptitude pour durée réglementaire, pas 'définitif'.",
+    "notes": null
+  }
+}

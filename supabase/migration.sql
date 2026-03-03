@@ -40,3 +40,22 @@ begin
     limit match_count;
 end;
 $$;
+
+-- ─── Decision Engine: evaluation sessions ─────────────────────────
+create table if not exists evaluations (
+  id uuid primary key default gen_random_uuid(),
+  pathology text not null,
+  group_permis text not null default 'G1',
+  facts jsonb not null default '{}',
+  answers jsonb not null default '[]',
+  fired_rules jsonb default '[]',
+  current_node text,
+  decision_code text,
+  decision_output jsonb,
+  status text default 'in_progress',
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create index if not exists evaluations_status_idx on evaluations (status);
+create index if not exists evaluations_pathology_idx on evaluations (pathology);

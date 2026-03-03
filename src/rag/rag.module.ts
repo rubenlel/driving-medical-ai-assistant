@@ -13,5 +13,6 @@ import { PromptBuilderService } from './prompt-builder.service';
     VectorSearchService,
     PromptBuilderService,
   ],
+  exports: [RagService],
 })
 export class RagModule {}

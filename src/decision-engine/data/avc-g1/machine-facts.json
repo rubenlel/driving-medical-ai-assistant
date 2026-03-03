@@ -1,0 +1,177 @@
+[
+  {
+    "key": "event.within_6_months",
+    "type": "bool",
+    "description": "Évènement < 6 mois",
+    "sourceNode": "Q0",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "clinical.not_stable_or_worsening",
+    "type": "bool",
+    "description": "Évolution non stabilisée/aggravation récente",
+    "sourceNode": "Q6",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "rehab.in_progress_for_deficit",
+    "type": "bool",
+    "description": "Rééducation en cours pour déficit non stabilisé",
+    "sourceNode": "Q7",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "neuro.major_motor_deficit",
+    "type": "bool",
+    "description": "Déficit moteur/coordination significatif persistant",
+    "sourceNode": "Q2(+Q2a)",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "vision.hemianopsia_persistent",
+    "type": "bool",
+    "description": "Hémianopsie persistante",
+    "sourceNode": "Q3a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "vision.quadranopsia",
+    "type": "bool",
+    "description": "Quadranopsie",
+    "sourceNode": "Q3a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "vision.diplopia_persistent",
+    "type": "bool",
+    "description": "Diplopie persistante",
+    "sourceNode": "Q3a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "vision.oculomotor_instability",
+    "type": "bool",
+    "description": "Troubles oculomoteurs/nystagmus/saccades pathologiques",
+    "sourceNode": "Q3a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "vision.transient_or_recovered",
+    "type": "bool",
+    "description": "Trouble visuel transitoire ou récupéré",
+    "sourceNode": "Q3a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "specialist.oph_recent_favorable",
+    "type": "bool",
+    "description": "Bilan ophtalmo récent favorable",
+    "sourceNode": "Doc",
+    "allowedValues": "True/False/Unknown"
+  },
+  {
+    "key": "cognition.neglect_spatial",
+    "type": "bool",
+    "description": "Négligence spatiale",
+    "sourceNode": "Q4a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "cognition.attention_impairment",
+    "type": "bool",
+    "description": "Trouble attentionnel/distractibilité",
+    "sourceNode": "Q4a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "cognition.cognitive_slowing",
+    "type": "bool",
+    "description": "Ralentissement cognitif",
+    "sourceNode": "Q4a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "cognition.executive_judgement_impairment",
+    "type": "bool",
+    "description": "Trouble exécutif/jugement",
+    "sourceNode": "Q4a",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "language.major_impairment",
+    "type": "bool",
+    "description": "Troubles du langage majeurs",
+    "sourceNode": "Q5",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "seizure.post_stroke",
+    "type": "bool",
+    "description": "Crises d’épilepsie post-AVC",
+    "sourceNode": "Q8",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "treatment.affects_vigilance",
+    "type": "bool",
+    "description": "Traitements à risque vigilance",
+    "sourceNode": "Q9",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "specialist.neuro_recent_favorable",
+    "type": "bool",
+    "description": "Avis neuro récent compatible conduite",
+    "sourceNode": "Q10",
+    "allowedValues": "True/False/Unknown"
+  },
+  {
+    "key": "workup.etiology_completed",
+    "type": "bool",
+    "description": "Bilan étiologique terminé",
+    "sourceNode": "Doc",
+    "allowedValues": "True/False/Unknown"
+  },
+  {
+    "key": "uncertainty.high",
+    "type": "bool",
+    "description": "Incertitude élevée (manque éléments majeurs)",
+    "sourceNode": "System",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "evidence.discordant",
+    "type": "bool",
+    "description": "Éléments discordants (avis/clinique/tests)",
+    "sourceNode": "System",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "etiology.fop",
+    "type": "bool",
+    "description": "Étiologie FOP",
+    "sourceNode": "Q1+Doc",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "patient.young",
+    "type": "bool",
+    "description": "Sujet jeune (heuristique)",
+    "sourceNode": "Age",
+    "allowedValues": "True/False"
+  },
+  {
+    "key": "clinical.full_recovery",
+    "type": "bool",
+    "description": "Récupération complète documentée",
+    "sourceNode": "Exam+Docs",
+    "allowedValues": "True/False/Unknown"
+  },
+  {
+    "key": "no_stop_criteria",
+    "type": "bool",
+    "description": "Aucun STOP déclenché par l’arbre",
+    "sourceNode": "Engine",
+    "allowedValues": "True/False"
+  }
+]

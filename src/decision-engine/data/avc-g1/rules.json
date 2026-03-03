@@ -1,0 +1,92 @@
+[
+  {
+    "ruleId": "R1",
+    "appliesTo": "Q3a",
+    "trigger": "Hémianopsie persistante",
+    "decisionCode": "FIN_A",
+    "decisionLabel": "INAPTE (tant que présent)",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Réévaluation après bilan spécialisé; compensation documentée si possible",
+    "notes": "Risque majeur de non-détection des obstacles."
+  },
+  {
+    "ruleId": "R2",
+    "appliesTo": "Q3a",
+    "trigger": "Quadranopsie",
+    "decisionCode": "FIN_A",
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Bilan ophtalmologique + réévaluation après stabilisation",
+    "notes": "Perte partielle du champ visuel."
+  },
+  {
+    "ruleId": "R3",
+    "appliesTo": "Q3a",
+    "trigger": "Diplopie persistante",
+    "decisionCode": "FIN_A",
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Ré-aptitude possible si diplopie corrigée (prisme/occlusion) + avis oph favorable",
+    "notes": "Altération perception spatiale."
+  },
+  {
+    "ruleId": "R4",
+    "appliesTo": "Q3a",
+    "trigger": "Troubles oculomoteurs/nystagmus; saccades pathologiques",
+    "decisionCode": "FIN_A",
+    "decisionLabel": "INAPTE TEMPORAIRE",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Réévaluation après stabilisation + avis spécialisé",
+    "notes": "Poursuite oculaire instable."
+  },
+  {
+    "ruleId": "R5",
+    "appliesTo": "Q3a",
+    "trigger": "Trouble transitoire/récupéré",
+    "decisionCode": "FIN_E",
+    "decisionLabel": "APTE TEMPORAIRE (condition)",
+    "defaultDuration": "6 mois",
+    "reEvaluationConditions": "Bilan ophtalmologique récent et favorable",
+    "notes": "Possible si récupération documentée."
+  },
+  {
+    "ruleId": "R6",
+    "appliesTo": "Q4a",
+    "trigger": "Négligence spatiale",
+    "decisionCode": "FIN_C",
+    "decisionLabel": "INAPTE + ÉVAL COG",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Bilan neuropsy; tests conduite/psychotechniques; amélioration documentée",
+    "notes": "Risque collisions latérales / non-perception."
+  },
+  {
+    "ruleId": "R7",
+    "appliesTo": "Q4a",
+    "trigger": "Trouble attentionnel/distractibilité",
+    "decisionCode": "FIN_C",
+    "decisionLabel": "INAPTE + ÉVAL COG",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Bilan neuropsy; évaluer vigilance; test conduite",
+    "notes": "Baisse vigilance / lenteur réaction."
+  },
+  {
+    "ruleId": "R8",
+    "appliesTo": "Q4a",
+    "trigger": "Ralentissement cognitif",
+    "decisionCode": "FIN_C",
+    "decisionLabel": "INAPTE + ÉVAL COG",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Bilan neuropsy; réévaluer après amélioration",
+    "notes": "Peut être temporaire ou durable."
+  },
+  {
+    "ruleId": "R9",
+    "appliesTo": "Q4a",
+    "trigger": "Trouble exécutif/jugement",
+    "decisionCode": "FIN_C",
+    "decisionLabel": "INAPTE + ÉVAL COG",
+    "defaultDuration": "DUREE_INAPTE_TEMP",
+    "reEvaluationConditions": "Bilan neuropsy; évaluer jugement; test conduite",
+    "notes": "Planification/gestion priorités altérées."
+  }
+]

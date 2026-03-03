@@ -14,7 +14,8 @@ export interface ProposedOrientation {
   justification: string;
 }
 
-export interface RagAnswer {
+/** GPT analysis output (from prompt) */
+export interface GptAnalysis {
   case_analysis: string;
   regulatory_framework: string;
   regulatory_points: RegulatoryPoint[];
@@ -25,6 +26,29 @@ export interface RagAnswer {
   disclaimer: string;
 }
 
+/** Engine deterministic decision */
+export interface EngineDecision {
+  code: string;
+  label: string;
+  type: string;
+  duration: string;
+  cerfa_text: string;
+  confidence: number;
+}
+
+export interface EngineRuleFired {
+  ruleId: string;
+  rationale: string;
+  confidence: number;
+}
+
+export interface Accommodation {
+  symptom: string;
+  codes: string;
+  label: string;
+  comment: string;
+}
+
 export interface SourceReference {
   source_number: number;
   chunk_id: string;
@@ -33,11 +57,27 @@ export interface SourceReference {
 }
 
 export interface RagResponse {
-  answer: RagAnswer;
+  /** GPT expert analysis */
+  analysis: GptAnalysis;
+
+  /** Deterministic engine decision (from rules) */
+  engine: {
+    decision: EngineDecision;
+    fired_rules: EngineRuleFired[];
+    required_actions: { type: string; value: string }[];
+    accommodations: Accommodation[];
+    expert_notes: string[];
+    ui_messages: string[];
+    facts_extracted: Record<string, boolean | null>;
+  } | null;
+
+  /** Regulatory text sources used */
   sources: SourceReference[];
+
   metadata: {
     chunks_used: number;
     model: string;
+    engine_pathology: string | null;
     timestamp: string;
   };
 }
